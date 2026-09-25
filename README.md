@@ -27,6 +27,6 @@ Desarrollar una aplicación web para la gestión integral de complejos de fútbo
 + DT3:Zambrano Mendoza Leslie Itzel
 
 ## FECHA
-* SPRINT 1: 
-* SPRINT 2:
-* SPRINT 3:
+* SPRINT 1: 2 de octubre 2026 - 16 de octubre 2026 
+* SPRINT 2: 19 octubre 2026 - 2 de noviembre 2026
+* SPRINT 3: 9 noviembre 2026 - 23 de noviembre 2026
