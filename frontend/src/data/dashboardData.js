@@ -1,13 +1,13 @@
 // Información local de demostración. Sustituir este módulo al integrar el backend.
 export const dashboardMetrics = [
-  { label: 'Torneos activos', value: '08', change: '+2 este mes', icon: 'pi-trophy', tone: 'violet' },
+  { label: 'Torneos activos', value: '08', change: '+2 este mes', icon: 'pi-trophy', tone: 'teal' },
   { label: 'Partidos programados', value: '24', change: 'Esta semana', icon: 'pi-calendar', tone: 'blue' },
   { label: 'Jugadores registrados', value: '1,284', change: '+86 este mes', icon: 'pi-users', tone: 'green' },
   { label: 'Ingresos del mes', value: '$84,250', change: '+12.8% vs. mes anterior', icon: 'pi-wallet', tone: 'orange' },
 ]
 
 export const upcomingMatches = [
-  { time: '16:00', date: 'HOY, 28 OCT', home: 'Atlético Norte', away: 'Deportivo Sur', field: 'Cancha 01', league: 'Liga Premier', color: 'violet' },
+  { time: '16:00', date: 'HOY, 28 OCT', home: 'Atlético Norte', away: 'Deportivo Sur', field: 'Cancha 01', league: 'Liga Premier', color: 'teal' },
   { time: '17:30', date: 'HOY, 28 OCT', home: 'Real Campestre', away: 'Los Halcones', field: 'Cancha 03', league: 'Torneo Apertura', color: 'blue' },
   { time: '19:00', date: 'HOY, 28 OCT', home: 'FC Alameda', away: 'Titanes FC', field: 'Cancha 02', league: 'Liga Premier', color: 'orange' },
 ]

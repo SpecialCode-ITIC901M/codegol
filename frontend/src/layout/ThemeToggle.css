@@ -1,0 +1,4 @@
+.theme-toggle{width:auto;min-width:38px;padding:0 8px;display:flex;gap:7px;color:#77798e}
+.theme-toggle-label{font-size:12px;font-weight:600}
+.admin-shell[data-theme='dark'] .topbar-divider{background:#414158}
+@media(max-width:760px){.theme-toggle-label{display:none}.theme-toggle{width:32px;min-width:32px;padding:0}}

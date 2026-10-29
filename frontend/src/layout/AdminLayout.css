@@ -28,12 +28,12 @@
     width: 34px;
     height: 34px;
     border-radius: 11px;
-    background: linear-gradient(145deg, #7769f3, #5144d5);
+    background: linear-gradient(145deg, #37D2C7, #087F89);
     color: #fff;
     display: grid;
     place-items: center;
     font-size: 17px;
-    box-shadow: 0 5px 12px #6558e833
+    box-shadow: 0 5px 12px #0FAEAA33
 }
 
 .brand-name {
@@ -44,7 +44,7 @@
 }
 
 .brand-name>span {
-    color: #6558e8
+    color: #0FAEAA
 }
 
 .brand-name small {
@@ -58,8 +58,8 @@
 .brand-version {
     font-size: 8px;
     font-weight: 700;
-    color: #6558e8;
-    background: #efedff;
+    color: #0FAEAA;
+    background: #E5F8F5;
     padding: 3px 5px;
     border-radius: 4px;
     align-self: flex-start;
@@ -80,8 +80,8 @@
 .club-avatar {
     height: 33px;
     width: 33px;
-    background: #f0efff;
-    color: #6558e8;
+    background: #E7F8F6;
+    color: #0FAEAA;
     border-radius: 8px;
     display: grid;
     place-items: center;
@@ -150,19 +150,19 @@
 
 .nav-link:hover {
     background: #f8f8fc;
-    color: #5147ce
+    color: #087F89
 }
 
 .nav-link.active {
-    background: #efedff;
-    color: #574add;
+    background: #E5F8F5;
+    color: #087F89;
     font-weight: 600
 }
 
 .nav-badge {
     margin-left: auto;
-    background: #e3e0ff;
-    color: #6558e8;
+    background: #CFF1EC;
+    color: #0FAEAA;
     font-size: 9px;
     padding: 2px 7px;
     border-radius: 9px
@@ -185,11 +185,11 @@
 .help-icon {
     width: 28px;
     height: 28px;
-    background: #eae8ff;
+    background: #DDF5F1;
     border-radius: 7px;
     display: grid;
     place-items: center;
-    color: #6558e8;
+    color: #0FAEAA;
     font-size: 13px;
     flex: none
 }
@@ -290,8 +290,8 @@
 
 .icon-button:hover,
 .icon-button.selected {
-    background: #f5f4ff;
-    color: #6558e8
+    background: #E7F8F6;
+    color: #0FAEAA
 }
 
 .topbar-divider {
@@ -431,7 +431,7 @@
 }
 
 .notifications-popover p i {
-    color: #6558e8;
+    color: #0FAEAA;
     margin-top: 1px
 }
 
@@ -439,7 +439,7 @@
 .account-popover>button {
     border: 0;
     background: transparent;
-    color: #6558e8;
+    color: #0FAEAA;
     font: inherit;
     font-size: 10px;
     cursor: pointer;

@@ -26,7 +26,7 @@
 .welcome-line {
     width: 18px;
     height: 2px;
-    background: #6558e8;
+    background: #0FAEAA;
     border-radius: 2px
 }
 
@@ -49,7 +49,7 @@
 .primary-button {
     height: 36px;
     padding: 0 13px;
-    background: #6558e8;
+    background: #0FAEAA;
     color: #fff;
     border: 0;
     border-radius: 7px;
@@ -59,7 +59,7 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 10px #6558e826
+    box-shadow: 0 4px 10px #0FAEAA26
 }
 
 .primary-button:hover {
@@ -104,9 +104,9 @@
     margin-bottom: 11px
 }
 
-.metric-icon.violet {
-    background: #efedff;
-    color: #6558e8
+.metric-icon.teal {
+    background: #E5F8F5;
+    color: #0FAEAA
 }
 
 .metric-icon.blue {
@@ -191,7 +191,7 @@
 .text-action {
     background: none;
     border: 0;
-    color: #6558e8;
+    color: #0FAEAA;
     font-size: 9px;
     font-weight: 600;
     display: flex;
@@ -251,7 +251,7 @@
     flex: none
 }
 
-.match-league-dot.violet {
+.match-league-dot.teal {
     background: #7567ed
 }
 
@@ -311,7 +311,7 @@
     margin-top: 7px;
     border: 1px solid #edecf8;
     background: #fafaff;
-    color: #6558e8;
+    color: #0FAEAA;
     border-radius: 6px;
     font-size: 9px;
     font-weight: 600;
@@ -544,11 +544,11 @@
 }
 
 .legend-dot.primary {
-    background: #6558e8
+    background: #0FAEAA
 }
 
 .legend-dot.pale {
-    background: #c8c5ee
+    background: #A8E4DF
 }
 
 .chart-legend>button {
@@ -738,8 +738,8 @@
 }
 
 .result-filters button.active {
-    background: #efedff;
-    color: #6558e8;
+    background: #E5F8F5;
+    color: #0FAEAA;
     font-weight: 600
 }
 
