@@ -11,7 +11,7 @@ import Finanzas from './pages/finanzas'
 import Configuracion from './pages/configuracion'
 import Login from './pages/login/Login'
 import Registro from './pages/registro/Registro'
-import TorneosPublicos from './pages/consulta-publica/ConsultaPublica'
+import PublicHome from './pages/public-home/PublicHome'
 
 function ProtectedAdmin() {
   if (!localStorage.getItem('codegol-auth-token')) return <Navigate to="/" replace />
@@ -20,9 +20,9 @@ function ProtectedAdmin() {
 
 export default function App() {
   return <BrowserRouter><Routes>
-    <Route path="/" element={<Login />} />
+    <Route path="/" element={<PublicHome />} />
     <Route path="/login" element={<Login />} />
-    <Route path="/consulta-publica" element={<TorneosPublicos />} />
+    <Route path="/consulta-publica" element={<PublicHome />} />
     <Route path="/admin" element={<ProtectedAdmin />}>
       <Route index element={<Dashboard />} />
       <Route path="torneos" element={<Torneos />} />

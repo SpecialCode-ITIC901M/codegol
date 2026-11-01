@@ -158,6 +158,10 @@
     color: #087F89;
     font-weight: 600
 }
+.public-panel-link { margin: 12px 0 15px; background: #f1f8f6; color: #087f78; font-weight: 700; }
+.public-panel-link:hover { background: #e4f4ef; }
+.admin-shell[data-theme='dark'] .public-panel-link { background: #203c39; color: #b3e6d8; }
+.admin-shell[data-theme='dark'] .public-panel-link:hover { background: #294943; }
 
 .nav-badge {
     margin-left: auto;
