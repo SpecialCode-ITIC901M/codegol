@@ -13,6 +13,7 @@ const menuGroups = [
   { label: 'ADMINISTRACIÓN', links: [
     { to: '/admin/arbitros', label: 'Árbitros', icon: 'pi-stopwatch' },
     { to: '/admin/finanzas', label: 'Finanzas y caja', icon: 'pi-wallet' },
+    { to: '/admin/registro', label: 'Registrar usuario', icon: 'pi-user-plus' },
   ] },
 ]
 

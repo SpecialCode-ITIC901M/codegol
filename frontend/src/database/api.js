@@ -5,6 +5,12 @@ export async function apiRequest(path, options = {}) {
   const endpoint = `${API_BASE_URL}/${path.replace(/^\/+/, '')}`
   const headers = new Headers(options.headers || {})
   const isFormData = options.body instanceof FormData
+  const token = localStorage.getItem('codegol-auth-token')
+  const isDemoSession = localStorage.getItem('codegol-auth-mode') === 'local-demo'
+
+  if (token && !isDemoSession && !path.startsWith('auth/login')) {
+    headers.set('Authorization', `Bearer ${token}`)
+  }
 
   if (options.body && !isFormData && !headers.has('Content-Type')) {
     headers.set('Content-Type', 'application/json')
@@ -17,10 +23,10 @@ export async function apiRequest(path, options = {}) {
   const result = responseType.includes('application/json') ? await response.json() : await response.text()
 
   if (!response.ok) {
-    const message = typeof result === 'object' && result?.message
-      ? result.message
+    const message = typeof result === 'object' && (result?.message || result?.mensaje || result?.detail || result?.error)
+      ? result.message || result.mensaje || result.detail || result.error
       : `La solicitud falló (${response.status}).`
-    throw new Error(message)
+    throw Object.assign(new Error(message), { status: response.status })
   }
 
   return result

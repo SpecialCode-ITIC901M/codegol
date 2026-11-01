@@ -17,6 +17,7 @@
 .login-art-content { max-width: 365px; }
 .brand-mark { overflow: hidden; }
 .brand-logo-image { width: 48px; height: 48px; object-fit: cover; object-position: center 18%; }
+.public-tournaments-link { min-height: 26px; }
 @media (max-width: 1100px) {
   .login-logo-image { right: 24px; bottom: 48px; width: 150px; }
   .login-art-content { max-width: 255px; }

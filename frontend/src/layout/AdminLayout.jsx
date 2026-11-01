@@ -25,6 +25,9 @@ export default function AdminLayout() {
 
   function logout() {
     localStorage.removeItem('codegol-session')
+    localStorage.removeItem('codegol-auth-token')
+    localStorage.removeItem('codegol-auth-user')
+    localStorage.removeItem('codegol-auth-mode')
     navigate('/', { replace: true })
   }
 

@@ -1,7 +1,7 @@
 import ThemeToggle from './ThemeToggle'
 import AdminPerfil from './AdminPerfil'
 
-const sectionNames = { '/admin': 'Dashboard', '/admin/torneos': 'Torneos', '/admin/equipos': 'Equipos', '/admin/jugadores': 'Jugadores', '/admin/calendario': 'Calendario y partidos', '/admin/estadisticas': 'Estadísticas', '/admin/arbitros': 'Árbitros', '/admin/finanzas': 'Finanzas y caja', '/admin/configuracion': 'Configuración' }
+const sectionNames = { '/admin': 'Dashboard', '/admin/torneos': 'Torneos', '/admin/equipos': 'Equipos', '/admin/jugadores': 'Jugadores', '/admin/calendario': 'Calendario y partidos', '/admin/estadisticas': 'Estadísticas', '/admin/arbitros': 'Árbitros', '/admin/finanzas': 'Finanzas y caja', '/admin/configuracion': 'Configuración', '/admin/registro': 'Registrar usuario' }
 
 export default function TopBar({ location, theme, onThemeToggle, onMenuToggle, notificationsOpen, onNotificationsToggle, accountOpen, onAccountToggle, onLogout }) {
   const title = sectionNames[location.pathname] || 'Dashboard'

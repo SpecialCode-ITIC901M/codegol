@@ -10,9 +10,11 @@ import Arbitros from './pages/arbitros'
 import Finanzas from './pages/finanzas'
 import Configuracion from './pages/configuracion'
 import Login from './pages/login/Login'
+import Registro from './pages/registro/Registro'
+import TorneosPublicos from './pages/consulta-publica/ConsultaPublica'
 
 function ProtectedAdmin() {
-  if (localStorage.getItem('codegol-session') !== 'demo') return <Navigate to="/" replace />
+  if (!localStorage.getItem('codegol-auth-token')) return <Navigate to="/" replace />
   return <AdminLayout />
 }
 
@@ -20,6 +22,7 @@ export default function App() {
   return <BrowserRouter><Routes>
     <Route path="/" element={<Login />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/consulta-publica" element={<TorneosPublicos />} />
     <Route path="/admin" element={<ProtectedAdmin />}>
       <Route index element={<Dashboard />} />
       <Route path="torneos" element={<Torneos />} />
@@ -30,6 +33,7 @@ export default function App() {
       <Route path="arbitros" element={<Arbitros />} />
       <Route path="finanzas" element={<Finanzas />} />
       <Route path="configuracion" element={<Configuracion />} />
+      <Route path="registro" element={<Registro />} />
       <Route path="*" element={<Dashboard />} />
     </Route>
     <Route path="*" element={<Navigate to="/" replace />} />
