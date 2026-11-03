@@ -38,7 +38,7 @@ Desarrollar una aplicación web para la gestión integral de complejos de fútbo
 |---|---|---|
 | Frontend web: panel administrativo y portal público (React + Vite + PrimeReact) | DT1 Giovanna Bautista | Terminado para el parcial. Funciona con el backend o en **modo demostración** (datos de ejemplo guardados en el navegador) cuando el backend aún no responde |
 | Base de datos MySQL/MariaDB (`db/`) | Equipo | Esquema, datos de prueba y escenarios probados (ver abajo) |
-| Backend / API Spring Boot | Equipo | En desarrollo. El contrato de endpoints está en `docs/CONTRATO_API.md` |
+| Backend / API Spring Boot | Equipo | En desarrollo. Los endpoints que consume el panel ya están definidos en el front |
 | APK Android con lector de huella | Equipo | En desarrollo (HU-01 y HU-02). El panel web ya muestra su resultado (pase de lista y cédula) |
 
 ## HISTORIAS DE USUARIO, TAREAS Y CRITERIOS DE ACEPTACIÓN
@@ -145,14 +145,10 @@ Nombres solo con letras; nombre de equipo con letras y números (no solo número
 codegol/
 ├── README.md
 ├── db/                  scripts SQL (esquema, datos de prueba, escenarios)
-├── docs/                contrato de la API, trazabilidad HU→pantallas y capturas (docs/capturas)
 └── frontend/            React + Vite (src/pages: torneos, equipos, jugadores, calendario, partidos, estadisticas,
                          arbitros, finanzas, configuracion, registro, login, public-home, consulta-publica)
 ```
 
-## CAPTURAS DEL INCREMENTO
-Están en `docs/capturas/`: acceso (`01`), portal público (`02`–`05`), dashboard (`06`), torneos y equipos (`07`–`08`), jugadores con huella (`09`), calendario (`10`), cédula arbitral (`11`–`12`), estadísticas (`13`), árbitros (`14`), finanzas, recibo y reporte (`15`, `19`, `20`), usuarios y permisos (`16`–`17`) y validaciones (`18`).
-
 ## LIMITACIONES CONOCIDAS
-* El backend (Spring Boot) y la APK Android con lector de huella siguen en desarrollo; el panel web ya está listo para consumirlos según `docs/CONTRATO_API.md`.
+* El backend (Spring Boot) y la APK Android con lector de huella siguen en desarrollo; el panel web ya está listo para consumirlos según los endpoints definidos en `frontend/src/database/servicios.js`.
 * El portal público no incluye una sección de reglamento porque la documentación no la pide.
