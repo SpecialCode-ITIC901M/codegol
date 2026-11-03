@@ -104,12 +104,6 @@ Las tareas llevan entre paréntesis sus story points. ✅ = hecha en el incremen
 
 **Tareas:** ✅ 1. Maquetado responsive del portal público, con modo claro y oscuro (8) · ✅ 2. Consumo de la API pública de tablas y categorías sin login (5) · ✅ 3. Vista de próximos partidos por jornada con cancha y hora (5) · ✅ 4. Ranking de goleadores con actualización periódica (5) · ✅ 5. Pruebas de interfaz y usabilidad pública (3).
 
-## CÓMO EJECUTAR EL PROYECTO
-**1. Base de datos** (XAMPP + phpMyAdmin, o DBeaver). Ejecutar en este orden los scripts de la carpeta `db/`:
-1. `01_codegol_schema.sql` crea la base `codegol`, tablas, vistas, triggers y procedimientos (requiere MySQL 8 o MariaDB 10.4 o superior).
-2. `02_codegol_seed.sql` carga los datos de prueba.
-3. `03_codegol_pruebas.sql` ejecuta los escenarios de prueba. El caso del traslape de cancha **debe** terminar en error: así se comprueba la regla.
-
 **2. Frontend**
 ```bash
 cd frontend
