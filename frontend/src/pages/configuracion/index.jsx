@@ -1,2 +1,1 @@
-import SectionPlaceholder from '../../components/SectionPlaceholder'
-export default function Configuracion() { return <SectionPlaceholder title="Configuración" /> }
+export { default } from './Configuracion.jsx'

@@ -4,7 +4,7 @@ import codegolLogo from '../assets/codegol-logo.jpeg'
 const menuGroups = [
   { label: 'GENERAL', links: [
     { to: '/admin', label: 'Dashboard', icon: 'pi-home' },
-    { to: '/admin/torneos', label: 'Torneos', icon: 'pi-trophy', badge: '8' },
+    { to: '/admin/torneos', label: 'Torneos', icon: 'pi-star-fill' },
     { to: '/admin/equipos', label: 'Equipos', icon: 'pi-shield' },
     { to: '/admin/jugadores', label: 'Jugadores', icon: 'pi-users' },
     { to: '/admin/calendario', label: 'Calendario y partidos', icon: 'pi-calendar' },

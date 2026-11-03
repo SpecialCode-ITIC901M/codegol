@@ -7,6 +7,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import App from './App.jsx'
+import './styles/modulos.css'
 import './accessibility.css'
 //**Unicamente se importa el archivo index.css para aplicar estilos globales a la aplicación. 
 // Los demás archivos CSS importados son parte de la biblioteca PrimeReact, que proporciona 

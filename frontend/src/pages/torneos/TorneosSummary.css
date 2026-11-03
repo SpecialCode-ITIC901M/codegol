@@ -9,3 +9,5 @@
 .admin-shell[data-theme='dark'] .tournament-summary article{background:#252538;border-color:#38384e}
 .admin-shell[data-theme='dark'] .tournament-summary article>b{color:#f1f1fa}
 @media(max-width:900px){.tournament-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.tournament-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.tournament-links a{display:inline-flex;align-items:center;gap:7px;border:1px solid #dce7e5;border-radius:7px;padding:7px 12px;font-size:13px;font-weight:600;color:#267d7c;text-decoration:none}.admin-shell[data-theme='dark'] .tournament-links a{border-color:#414158;color:#8ee6df}

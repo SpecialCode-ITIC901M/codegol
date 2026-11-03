@@ -8,6 +8,7 @@ import {
   obtenerEquiposDeTorneo,
   obtenerTorneo,
   obtenerTorneos,
+  actualizarTorneo,
 } from './torneos'
 
 export default function useTorneos() {
@@ -65,7 +66,8 @@ export default function useTorneos() {
       await crearCategoria({ nombre: datos.nombre.trim(), descripcion: datos.descripcion.trim(), activa: true })
       setMensaje('La categoría se creó correctamente.')
       await cargarCatalogos()
-    } catch (cause) { setError(cause.message || 'No se pudo crear la categoría.') }
+      return true
+    } catch (cause) { setError(cause.message || 'No se pudo crear la categoría.'); return false }
     finally { setGuardando(false) }
   }
 
@@ -79,16 +81,21 @@ export default function useTorneos() {
         fechaFin: datos.fechaFin || null,
         estado: datos.estado,
         categoriaId: Number(datos.categoriaId),
+        cuotaInscripcion: Number(datos.cuotaInscripcion) || 0,
+        cuotaArbitraje: Number(datos.cuotaArbitraje) || 0,
+        limiteAmarillas: Number(datos.limiteAmarillas) || 3,
       })
       setMensaje('El torneo se creó correctamente.')
       await cargarCatalogos()
       if (creado?.id) seleccionarTorneo(String(creado.id))
-    } catch (cause) { setError(cause.message || 'No se pudo crear el torneo.') }
+      return true
+    } catch (cause) { setError(cause.message || 'No se pudo crear el torneo.'); return false }
     finally { setGuardando(false) }
   }
 
+  // Devuelve { ok, error }: el formulario de equipos muestra el resultado junto al botón (no arriba de la página).
   async function guardarEquipo(datos) {
-    if (!torneoSeleccionado) return
+    if (!torneoSeleccionado) return { ok: false, error: 'Primero selecciona un torneo.' }
     setGuardando(true); setError(''); setMensaje('')
     try {
       await inscribirEquipo({
@@ -99,10 +106,22 @@ export default function useTorneos() {
         pagoInscripcionCubierto: datos.pagoInscripcionCubierto,
         torneoId: Number(torneoSeleccionado),
       })
-      setMensaje('El equipo se inscribió correctamente.')
       setEquiposInscritos(await obtenerEquiposDeTorneo(torneoSeleccionado))
       setEquipos(await obtenerEquipos())
-    } catch (cause) { setError(cause.message || 'No se pudo inscribir el equipo.') }
+      return { ok: true }
+    } catch (cause) { return { ok: false, error: cause.message || 'No se pudo inscribir el equipo.' } }
+    finally { setGuardando(false) }
+  }
+
+  async function cambiarEstado(estado) {
+    if (!torneoSeleccionado) return
+    setGuardando(true); setError(''); setMensaje('')
+    try {
+      const actualizado = await actualizarTorneo(torneoSeleccionado, { estado })
+      setTorneoDetalle((actual) => ({ ...actual, ...actualizado, estado }))
+      setMensaje(`El torneo ahora está ${estado.replaceAll('_', ' ').toLowerCase()}.`)
+      setTorneos(await obtenerTorneos())
+    } catch (cause) { setError(cause.message || 'No se pudo cambiar el estado del torneo.') }
     finally { setGuardando(false) }
   }
 
@@ -115,6 +134,6 @@ export default function useTorneos() {
   return {
     categorias, torneos, equipos, equiposInscritos, torneoSeleccionado, torneoDetalle,
     seleccionarTorneo, cargando, guardando, error, mensaje,
-    guardarCategoria, guardarTorneo, guardarEquipo, recargar: cargarCatalogos,
+    guardarCategoria, guardarTorneo, guardarEquipo, cambiarEstado, recargar: cargarCatalogos,
   }
 }

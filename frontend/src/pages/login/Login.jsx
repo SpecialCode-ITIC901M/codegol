@@ -19,7 +19,7 @@ export default function Login() {
     setSubmitting(true)
     setFeedback(null)
     try {
-      if (user.trim() === '123' && password === '123') {
+      if (user === '123' && password === '123') {
         localStorage.setItem('codegol-auth-token', 'local-demo-123')
         localStorage.setItem('codegol-auth-mode', 'local-demo')
         localStorage.setItem('codegol-auth-user', JSON.stringify({ username: '123', nombreCompleto: 'Usuario de demostración', rol: 'ROLE_ADMIN' }))
@@ -28,10 +28,11 @@ export default function Login() {
         return
       }
 
-      const respuesta = await iniciarSesion({ username: user.trim(), password })
+      if (user !== user.trim()) { setFeedback({ type: 'error', text: 'El usuario no debe llevar espacios al inicio ni al final.' }); setSubmitting(false); return }
+      const { modoDemo, ...respuesta } = await iniciarSesion({ username: user, password })
       localStorage.setItem('codegol-auth-token', respuesta.token)
       localStorage.setItem('codegol-auth-user', JSON.stringify(respuesta))
-      localStorage.removeItem('codegol-auth-mode')
+      if (modoDemo) localStorage.setItem('codegol-auth-mode', 'local-demo'); else localStorage.removeItem('codegol-auth-mode')
       setFeedback({ type: 'success', text: 'Inicio de sesión correcto. Entrando al panel…' })
       window.setTimeout(() => navigate('/admin', { replace: true }), 1100)
     } catch (error) {

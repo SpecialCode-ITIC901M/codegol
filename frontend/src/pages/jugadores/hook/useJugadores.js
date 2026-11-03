@@ -1,81 +1,46 @@
-import { useEffect, useMemo, useState } from 'react'
-import { buscarJugadores, crearJugador, editarJugador, eliminarJugador } from './jugador'
+import { useMemo, useState } from 'react'
+import useDatos from '../../../hooks/useDatos'
+import { crearJugador, editarJugador, eliminarJugador, listarJugadores, obtenerSuspensiones } from '../../../database/servicios'
+import { obtenerEquipos, obtenerTorneos } from '../../torneos/hook/torneos'
+import { buscarJugadores, validarJugador } from './jugador'
 
-const STORAGE_KEY = 'codegol-jugadores-demo'
-const formularioVacio = { nombre: '', apellidos: '', equipo: '', posicion: 'Delantero', dorsal: '' }
-
-function leerJugadores() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-  } catch {
-    return []
-  }
-}
+const formularioVacio = { nombre: '', apellidos: '', equipoId: '', posicion: 'Delantero', dorsal: '', curp: '', fotoUrl: '' }
 
 export default function useJugadores() {
-  const [jugadores, setJugadores] = useState(leerJugadores)
+  const { datos, cargando, error, recargar } = useDatos(async () => {
+    const [jugadores, equipos, torneos] = await Promise.all([listarJugadores(), obtenerEquipos(), obtenerTorneos()])
+    const suspendidos = (await Promise.all(torneos.filter((t) => t.estado === 'EN_PROGRESO').map((t) => obtenerSuspensiones(t.id)))).flat()
+    return { jugadores, equipos, suspendidos }
+  }, [], { jugadores: [], equipos: [], suspendidos: [] })
   const [busqueda, setBusqueda] = useState('')
+  const [filtroEquipo, setFiltroEquipo] = useState('')
   const [formulario, setFormulario] = useState(formularioVacio)
   const [jugadorEnEdicion, setJugadorEnEdicion] = useState(null)
   const [formularioAbierto, setFormularioAbierto] = useState(false)
   const [mensaje, setMensaje] = useState('')
+  const [guardando, setGuardando] = useState(false)
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(jugadores))
-  }, [jugadores])
+  const jugadoresVisibles = useMemo(() => buscarJugadores(datos.jugadores, busqueda, filtroEquipo), [datos.jugadores, busqueda, filtroEquipo])
+  const idsSuspendidos = useMemo(() => new Set(datos.suspendidos.map((s) => s.jugadorId)), [datos.suspendidos])
 
-  const jugadoresVisibles = useMemo(() => buscarJugadores(jugadores, busqueda), [jugadores, busqueda])
+  function cambiarCampo(event) { const { name, value } = event.target; setFormulario((actual) => ({ ...actual, [name]: value })) }
+  function abrirFormulario(jugador = null) { setJugadorEnEdicion(jugador); setFormulario(jugador ? { ...formularioVacio, ...jugador } : { ...formularioVacio, equipoId: filtroEquipo }); setMensaje(''); setFormularioAbierto(true) }
+  function cerrarFormulario() { setFormularioAbierto(false); setJugadorEnEdicion(null); setFormulario(formularioVacio); setMensaje('') }
 
-  function cambiarCampo(event) {
-    const { name, value } = event.target
-    setFormulario((actual) => ({ ...actual, [name]: value }))
-  }
-
-  function abrirFormulario(jugador = null) {
-    setJugadorEnEdicion(jugador)
-    setFormulario(jugador ? { ...jugador } : formularioVacio)
-    setMensaje('')
-    setFormularioAbierto(true)
-  }
-
-  function cerrarFormulario() {
-    setFormularioAbierto(false)
-    setJugadorEnEdicion(null)
-    setFormulario(formularioVacio)
-    setMensaje('')
-  }
-
-  function guardarJugador(event) {
+  async function guardarJugador(event) {
     event.preventDefault()
+    setGuardando(true)
     try {
-      if (jugadorEnEdicion) {
-        setJugadores(editarJugador(jugadores, jugadorEnEdicion.id, formulario))
-      } else {
-        setJugadores(crearJugador(jugadores, formulario))
-      }
-      cerrarFormulario()
-    } catch (error) {
-      setMensaje(error.message)
-    }
+      const limpio = validarJugador(formulario, datos.jugadores, jugadorEnEdicion?.id)
+      if (jugadorEnEdicion) await editarJugador(jugadorEnEdicion.id, limpio); else await crearJugador(limpio)
+      cerrarFormulario(); recargar()
+    } catch (e) { setMensaje(e.message) } finally { setGuardando(false) }
   }
 
-  function quitarJugador(id) {
-    setJugadores(eliminarJugador(jugadores, id))
+  async function quitarJugador(jugador) {
+    if (!window.confirm(`¿Eliminar a ${jugador.nombre} ${jugador.apellidos}? Esta acción no se puede deshacer.`)) return
+    try { await eliminarJugador(jugador.id); recargar() } catch (e) { setMensaje(e.message) }
   }
 
-  return {
-    jugadores,
-    jugadoresVisibles,
-    busqueda,
-    setBusqueda,
-    formulario,
-    formularioAbierto,
-    jugadorEnEdicion,
-    mensaje,
-    cambiarCampo,
-    abrirFormulario,
-    cerrarFormulario,
-    guardarJugador,
-    quitarJugador,
-  }
+  return { jugadores: datos.jugadores, equipos: datos.equipos, jugadoresVisibles, idsSuspendidos, cargando, error, busqueda, setBusqueda, filtroEquipo, setFiltroEquipo, formulario, formularioAbierto, jugadorEnEdicion, mensaje, guardando, cambiarCampo, abrirFormulario, cerrarFormulario, guardarJugador, quitarJugador, recargar }
 }

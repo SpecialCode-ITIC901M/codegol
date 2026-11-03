@@ -13,7 +13,6 @@ export default function FootballCarousel() {
     return () => window.clearInterval(timer)
   }, [])
 
-  const move = (direction) => setActive((current) => (current + direction + moments.length) % moments.length)
   return <section className="football-gallery" aria-label="Galería de fútbol">
     <div className="football-gallery-window"><div className="football-gallery-track" style={{ transform: `translateX(-${active * 100}%)` }}>{moments.map((moment, index) => <article className="football-gallery-slide" key={moment.image} aria-hidden={index !== active}><img src={moment.image} alt={moment.title} /><div className="football-gallery-caption"><h3>{moment.title}</h3><p>{moment.caption}</p></div></article>)}</div></div>
     <div className="football-gallery-dots" aria-label="Seleccionar imagen">{moments.map((moment, index) => <button type="button" key={moment.image} className={active === index ? 'active' : ''} aria-label={`Mostrar imagen ${index + 1}`} aria-current={active === index ? 'true' : undefined} onClick={() => setActive(index)} />)}</div>

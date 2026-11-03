@@ -1,2 +1,1 @@
-import SectionPlaceholder from '../../components/SectionPlaceholder'
-export default function Equipos() { return <SectionPlaceholder title="Equipos" /> }
+export { default } from './Equipos.jsx'

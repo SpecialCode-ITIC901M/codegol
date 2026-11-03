@@ -20,7 +20,15 @@ export async function apiRequest(path, options = {}) {
   if (response.status === 204) return null
 
   const responseType = response.headers.get('content-type') || ''
+  if (response.ok && responseType.includes('text/html')) throw new Error('El servidor devolvió una página en lugar de datos de la API.')
   const result = responseType.includes('application/json') ? await response.json() : await response.text()
+
+  if (response.status === 401 && token && !isDemoSession && !path.startsWith('auth/')) {
+    // El token venció o ya no es válido: se limpia la sesión y se manda al login.
+    ;['codegol-session', 'codegol-auth-token', 'codegol-auth-user', 'codegol-auth-mode'].forEach((k) => localStorage.removeItem(k))
+    window.location.assign('/login')
+    throw Object.assign(new Error('Tu sesión venció. Inicia sesión de nuevo.'), { status: 401 })
+  }
 
   if (!response.ok) {
     const message = typeof result === 'object' && (result?.message || result?.mensaje || result?.detail || result?.error)
