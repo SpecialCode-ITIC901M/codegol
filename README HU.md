@@ -62,7 +62,7 @@ Las tareas llevan entre paréntesis sus story points. ✅ = hecha en el incremen
 2. *Registro rápido:* con la cédula abierta, el evento (gol, tarjeta, falta, cambio) se registra con un toque en la cédula.
 3. *Cierre y sincronización:* al cerrar la cédula se guarda el marcador definitivo y se sincroniza con el servidor web.
 
-**Tareas:** ⏳ 1. Arquitectura Android/Kotlin (8) · ⏳ 2. Pantallas de goles, tarjetas y faltas (5) · ✅ 3. Filtro de partidos por cancha y fecha: el panel muestra partidos del día y árbitro asignado (5) · ✅ 4. Vista web de la cédula con marcador, eventos y refresco automático cada 15 s mientras el partido está en juego (3) · ⏳ 5. Pruebas de reconexión offline/online (3).
+**Tareas:** ⏳ 1. Diseñar la arquitectura móvil Android/Kotlin de la APK (8) · ⏳ 2. Pantallas móviles para registrar goles, tarjetas y faltas con un toque (5) · ✅ 3. Filtro de partidos por cancha y fecha: el panel web ya muestra los partidos del día y el árbitro asignado (5) · ⏳ 4. Servicio de cierre de cédula y sincronización con el servidor; la vista web de la cédula ya se actualiza sola cada 15 s (3) · ⏳ 5. Pruebas de usabilidad en móviles y reconexión offline/online (3).
 
 ### HU-03 · Estadísticas y Sanciones Automáticas — Alta · 28 pts · Sprint 3 · Encargado: Irving Valverde Meneses
 **Como** administrador, **quiero** que la tabla de posiciones y el goleo se actualicen automáticamente al cerrarse la cédula, **para** evitar cálculos manuales.
